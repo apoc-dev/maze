@@ -1,16 +1,17 @@
 public class App {
     public static void main(String[] args){
 
-        int[][] board = {{0,0,0,1,0,0,0,1},
-                         {1,1,0,1,0,1,0,1},
-                         {1,0,0,1,0,1,0,1},
-                         {1,0,1,1,0,1,0,1},
-                         {1,0,0,0,0,1,0,1},
-                         {1,1,1,1,1,1,0,1},
-                         {0,0,0,1,1,0,0,0},
-                         {0,0,0,1,1,0,0,0}};
+        int size = 10;
 
-        Maze m = new Maze(board);
+        MazeGenerator generator = new MazeGenerator(size);
+        generator.dfs();
+
+        MazeProcessor proc = new MazeProcessor(generator.getList(), generator.getSize());
+        proc.toBinary();
+        
+        int[][] board = proc.getListBinary();
+
+        Maze m = new Maze(board, 1, 1, board.length-2, board.length-2);
         if(m.solve()){
             m.printboard();
         }else{

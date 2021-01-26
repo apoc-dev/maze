@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Apocalypso\\dev\\Github\\mazeGenerator\\mazeGenerator.jar"
+    ]
+}

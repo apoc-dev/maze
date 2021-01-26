@@ -3,14 +3,27 @@ public class Maze {
     int[][] board;
     int[][] sol;
 
-    public Maze(int[][] board){
+    int startX;
+    int startY;
+    int endX;
+    int endY;
+
+    public Maze(int[][] board, int startx, int starty, int endx, int endy){
         this.sol = new int[board.length][board.length];
-        this.sol[0][0] = 1;
+        
+        this.startX = startx;
+        this.startY = starty;
+        this.endX = endx;
+        this.endY = endy;
+
+        this.sol[this.startX][this.startY] = 1;
         this.board = board;
+
+
     }
 
     public boolean solve(){
-        if(backtrack(0,0, sol)){
+        if(backtrack(this.startX,this.startY, sol)){
             return true;
         }
         return false;
@@ -18,7 +31,7 @@ public class Maze {
 
     public boolean backtrack(int row, int col, int[][] sol){
 
-        if(row == board.length-1 && col == board.length-1){
+        if(row == this.endX && col == this.endY){
             return true;
         }
         
@@ -92,14 +105,14 @@ public class Maze {
         System.out.println("-----------");
         System.out.println();
         for (int i = 0; i < board.length; i++) {
-            System.out.print("|");
+            //System.out.print("|");
             for (int j = 0; j < board.length; j++) {
                 if (sol[i][j] == 1){
                     System.out.print(TerminalColours.ANSI_RED + board[i][j] + TerminalColours.ANSI_RESET);
                 }else{
                     System.out.print(board[i][j]);
                 }
-                System.out.print("|");
+                System.out.print(" ");
             }
             System.out.println();
             
